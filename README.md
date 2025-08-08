@@ -90,3 +90,31 @@ The `featured` flag determines whether the post appears in the featured section 
 ## 📚 Learn More
 
 To learn more about Astro, check out the [Astro documentation](https://docs.astro.build).
+
+## 🚢 Deployment
+
+This project is configured to automatically deploy to an AWS S3 bucket using GitHub Actions. When changes are pushed to the `main` branch, the site will be built and deployed automatically.
+
+### Required GitHub Secrets and Variables
+
+To enable the automated deployment, you need to set up the following GitHub secrets and variables in your repository:
+
+#### Secrets
+
+| Secret Name | Description |
+| :---------- | :---------- |
+| `AWS_ACCESS_KEY_ID` | AWS IAM user access key with S3 permissions |
+| `AWS_SECRET_ACCESS_KEY` | AWS IAM user secret key |
+| `AWS_REGION` | AWS region where your S3 bucket is located (e.g., `us-east-1`) |
+| `S3_BUCKET_NAME` | Name of the S3 bucket for hosting the website |
+| `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID for cache invalidation (only needed if using CloudFront) |
+
+#### Variables
+
+| Variable Name | Description |
+| :------------ | :---------- |
+| `USE_CLOUDFRONT` | Set to `true` to enable CloudFront invalidation, otherwise leave unset |
+
+### Manual Deployment
+
+You can also trigger a manual deployment by going to the Actions tab in your GitHub repository and selecting the "Deploy to S3" workflow.
