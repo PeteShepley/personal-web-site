@@ -1,159 +1,162 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import {getCollection} from 'astro:content';
 
 // Get featured blog posts
-const allPosts = await getCollection('blog', ({ data }) => {
-	return data.featured === true;
+const allPosts = await getCollection('blog', ({data}) => {
+  return data.featured === true;
 });
 
 // Sort by publication date (newest first)
 const featuredPosts = allPosts.sort((a, b) => {
-	const dateA = new Date(a.data.pubDate);
-	const dateB = new Date(b.data.pubDate);
-	return dateB - dateA;
+  const dateA = new Date(a.data.pubDate);
+  const dateB = new Date(b.data.pubDate);
+  return dateB - dateA;
 });
 ---
 
 <Layout title="Pete Shepley - Personal Website" description="Welcome to Pete Shepley's personal website and blog">
-	<section class="hero">
-		<div class="hero-content">
-			<h1>Hi, I'm Pete Shepley</h1>
-			<p class="subtitle">Software Developer & Tech Enthusiast</p>
-			<p class="intro">
-				Welcome to my personal website! I'm passionate about web development, technology, and sharing my knowledge through writing.
-				This site serves as a platform for my thoughts, projects, and experiences in the tech world.
-			</p>
-			<div class="cta-buttons">
-				<a href="/blog" class="cta-button primary">Read My Blog</a>
-			</div>
-		</div>
-	</section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Pete Shepley</h1>
+            <p class="subtitle">Software Engineer, Systems Analyst, and Technology Enthusiast</p>
+            <p class="intro">
+                I am a passionate software engineer with a strong background in systems analysis and development.
+                I have experience working with various technologies, including JavaScript, TypeScript, React, Node.js,
+                and more.
+                I am enthusiastic about learning and exploring new technologies to stay up-to-date with the latest
+                trends in the industry.
+            </p>
+            <div class="cta-buttons">
+                <a href="/blog" class="cta-button primary">Read My Blog</a>
+            </div>
+        </div>
+    </section>
 
-	<section class="featured-posts">
-		<h2>Featured Blog Posts</h2>
-		<div class="post-grid">
-			{featuredPosts.map(post => (
-				<a href={`/blog/${post.slug}`} class="post-card">
-					<h3>{post.data.title}</h3>
-					<p class="post-date">{post.data.pubDate}</p>
-					<p>{post.data.description}</p>
-				</a>
-			))}
-		</div>
-	</section>
+    <section class="featured-posts">
+        <h2>Featured Blog Posts</h2>
+        <div class="post-grid">
+          {featuredPosts.map(post => (
+                  <a href={`/blog/${post.slug}`} class="post-card">
+                      <h3>{post.data.title}</h3>
+                      <p class="post-date">{post.data.pubDate}</p>
+                      <p>{post.data.description}</p>
+                  </a>
+          ))}
+        </div>
+    </section>
 </Layout>
 
 <style>
-	.hero {
-		padding: 4rem 0;
-		text-align: center;
-	}
+    .hero {
+        padding: 4rem 0;
+        text-align: center;
+    }
 
-	.hero-content {
-		max-width: 800px;
-		margin: 0 auto;
-	}
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-	h1 {
-		font-size: 3rem;
-		margin-bottom: 0.5rem;
-		color: var(--primary-color);
-	}
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+    }
 
-	.subtitle {
-		font-size: 1.5rem;
-		margin-bottom: 1.5rem;
-		color: var(--secondary-color);
-		font-weight: 500;
-	}
+    .subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--secondary-color);
+        font-weight: 500;
+    }
 
-	.intro {
-		font-size: 1.2rem;
-		margin-bottom: 2rem;
-		line-height: 1.6;
-	}
+    .intro {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
 
-	.cta-buttons {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		margin-top: 2rem;
-	}
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
 
-	.cta-button {
-		display: inline-block;
-		padding: 0.8rem 1.5rem;
-		border-radius: 5px;
-		text-decoration: none;
-		font-weight: 600;
-		transition: all 0.3s ease;
-	}
+    .cta-button {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
 
-	.primary {
-		background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-		color: white;
-	}
+    .primary {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        color: white;
+    }
 
-	.primary:hover {
-		transform: translateY(-3px);
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-	}
+    .primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
 
-	.featured-posts {
-		padding: 3rem 0;
-	}
+    .featured-posts {
+        padding: 3rem 0;
+    }
 
-	h2 {
-		text-align: center;
-		margin-bottom: 2rem;
-		font-size: 2rem;
-		color: var(--primary-color);
-	}
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        color: var(--primary-color);
+    }
 
-	.post-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: 2rem;
-	}
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+    }
 
-	.post-card {
-		background-color: white;
-		border-radius: 8px;
-		padding: 1.5rem;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-		text-decoration: none;
-		color: var(--text-color);
-	}
+    .post-card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        color: var(--text-color);
+    }
 
-	.post-card:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-	}
+    .post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
 
-	.post-card h3 {
-		color: var(--primary-color);
-		margin-bottom: 0.5rem;
-	}
+    .post-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
 
-	.post-date {
-		color: #666;
-		font-size: 0.9rem;
-		margin-bottom: 1rem;
-	}
+    .post-date {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
 
-	@media (max-width: 768px) {
-		.hero {
-			padding: 2rem 0;
-		}
+    @media (max-width: 768px) {
+        .hero {
+            padding: 2rem 0;
+        }
 
-		h1 {
-			font-size: 2.5rem;
-		}
+        h1 {
+            font-size: 2.5rem;
+        }
 
-		.post-grid {
-			grid-template-columns: 1fr;
-		}
-	}
+        .post-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
