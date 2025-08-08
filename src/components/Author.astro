@@ -1,0 +1,25 @@
+---
+interface Props {
+  name: string;
+  bio: string;
+}
+const { name, bio } = Astro.props;
+---
+
+<div class="author-bio">
+    <h3>About the Author</h3>
+    <h4>{name}</h4>
+    <p>{bio}</p>
+</div>
+
+<style>
+    .author-bio {
+        margin-bottom: 2rem;
+    }
+
+    .author-bio h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+    }
+</style>
