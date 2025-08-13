@@ -1,7 +1,7 @@
 ---
 title: I want to write better code
 description: New site called better-code.org for collecting resources on the topic
-pubDate: Auguest 13th, 2025
+pubDate: August 13th, 2025
 tags: [ "coding-practices", "software-development", "learning" ]
 featured: true
 ---
